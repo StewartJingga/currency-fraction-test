@@ -27,12 +27,12 @@ Run the application using
 npm start
 ```
 
-to start a [webpack-dev-server](https://github.com/webpack/webpack-dev-server) on localhost:8080 (default)
+doing so will start a [webpack-dev-server](https://github.com/webpack/webpack-dev-server) on localhost:8080 (default)
 
 
 ## Running the tests
 
-Using [jest](https://www.npmjs.com/package/jest) to test javascript code and [Enzyme](https://github.com/airbnb/enzyme) to test react component
+This application is using [jest](https://www.npmjs.com/package/jest) to test javascript code and [Enzyme](https://github.com/airbnb/enzyme) to test react component
 
 ```
 npm run test

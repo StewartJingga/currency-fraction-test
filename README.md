@@ -1,6 +1,6 @@
-# Project Title
+# Rupiah Fraction Calculator
 
-This a program written using ReactJS to calculate the minimum number of rupiahs needed to make an amount inputted by user
+This is a program written using ReactJS to calculate the minimum number of rupiahs needed to make an amount inputted by user
 
 ### Prerequisites
 

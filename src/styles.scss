@@ -19,10 +19,12 @@ body {
     justify-content: center;
 }
 
-form {
-    width: 300px;
+.container {
+    max-width: 500px;
     padding: 2rem;
+}
 
+form {
     p {
         margin-top: 0;
     }

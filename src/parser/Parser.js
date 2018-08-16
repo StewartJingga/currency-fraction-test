@@ -1,57 +1,32 @@
-import { TrimWhiteSpaces, TrimLeadingZeroes, RemoveThousandSeparators, RemoveCurrencyPrefix, CheckThousandSeparatorsValidity, CheckAndRemoveDecimalValue } from './ParserPipes';
-
-const Parse = (value) => {
+export const ExtractNumberIncludingThousandSeparators = (value) => {
     if (!value) return null;
 
-    // Parse value
+    let regexGroupForPrefix = "^(?:Rp|Rp.)?(?:\\s*)?(?:0*)";
+    let regexGroupForMainValue = "(\\d+|\\d{1,3}(?:\\.\\d{3})+)";
+    let regexGroupForSuffix = "(?:,00)?$";
+
+    // Use Regex to find the number with thousand separator included
+    let regex = new RegExp(regexGroupForPrefix + regexGroupForMainValue + regexGroupForSuffix);
+    let result = value.match(regex);
+
+    // Return null if no match found
+    if(result == null) return null;
+
+    // Return only the main value with thousand separator if any
+    return result[1];
+}
+
+export const ParseToNumber = (value) => {
+    if (!value) return null;
+    
+    // Remove thousand separators
+    value =  value.replace(/\./g, "");
+
+    // Try to parse to number
     try {
-        value = ParseForPossibleCanonicalEquivalents(value);
+        return +value;
     }
     catch(e) {
         return null;
     }
-
-    // Value can't be empty string
-    if(value.trim() == "") return null;
-
-    // Check if value is a valid javascript number
-    if(isNaN(value)) return null;
-
-    // Parse to number
-    let result = +value;
-
-    // Check if result has decimal value
-    if(result %1 != 0) return null;
-
-    return result;
-}
-
-const ParseForPossibleCanonicalEquivalents = (value) => {
-    // Functions to parse value
-    let pipes = [
-        TrimWhiteSpaces,
-        TrimLeadingZeroes,
-        CheckAndRemoveDecimalValue,
-        CheckThousandSeparatorsValidity,
-        RemoveThousandSeparators
-    ];
-
-    // Run the value through functions
-    for(let pipe of pipes)
-    {
-        value = pipe(value);
-    }
-
-    // If value is still not a number, check for currency prefix
-    if(isNaN(value)) 
-    {
-        value = RemoveCurrencyPrefix(value);
-    }
-
-    return value;
-}
-
-// End of Pipes
-export default {
-    Parse
 }

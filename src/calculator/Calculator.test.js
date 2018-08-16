@@ -22,7 +22,7 @@ describe('Calculator function', () => {
     describe('Passing Tests with no remainders', () => {
         let testSamples = [
             [15000, 2], // [Sample, ExpectedResult]
-            [3900, 7]
+            [3900, 8]
         ];
 
         for(let sample of testSamples)
@@ -37,7 +37,7 @@ describe('Calculator function', () => {
     describe('Passing Tests with remainders', () => {
 
         let testSample = 12510;
-        let testResult = 3;
+        let testResult = 4;
         let remainder = 10;
         let result = Calculator.FindMinimumDenomination(testSample, RP_FRACTIONS);
 
